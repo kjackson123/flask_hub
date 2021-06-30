@@ -1,1 +1,1 @@
-web: gunicorn app:hubgui
+web: gunicorn -b :$PORT app:hubgui
