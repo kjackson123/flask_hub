@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0 :$PORT hubgui:app
+web: gunicorn -b :$PORT app:hubgui
