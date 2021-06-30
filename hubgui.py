@@ -25,6 +25,10 @@ app = Flask(__name__)
 @app.route("/index", methods=['GET', 'POST'])
 def index():
     # PINGSCRIPT
+    # Configure subprocess to hide the console window
+    info = subprocess.STARTUPINFO()
+    info.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    info.wShowWindow = subprocess.SW_HIDE
     devicesonline = []  # initializing list for devices that will respond to ping
     devicesoffline = []
     subnet = ipaddress.ip_network(('192.168.20.0/24'), strict=False)
@@ -32,14 +36,16 @@ def index():
     for ip in all_hosts[70:75]:
         print(ip)
         ip = str(ip)
-        result = subprocess.Popen(['ping', '-n', '1', '-w', '500', ip])
-        print(result)
-        if result == 0:
+        result = subprocess.Popen(['ping', '-n', '1', '-w', '500', ip],
+                                  stdout=subprocess.PIPE, startupinfo=info).communicate()[0]
+        #print("RESULTTTTTTTTTTTTTTTTTT", result)
+        if "Destination host unreachable" in result.decode('utf-8'):
+            devicesoffline.append(ip)
+        elif "Request timed out" in result.decode('utf-8'):
+            devicesoffline.append(ip)
+        else:
             devicesonline.append(ip)
             #print(ip + " is online")
-        else:
-            devicesoffline.append(ip)
-            #print(ip + " is offline")
     # print(devicesonline)
     res = [(val, 'online') for val in devicesonline]
     # print(res)
