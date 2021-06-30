@@ -37,7 +37,7 @@ def index():
         print(ip)
         ip = str(ip)
         result = subprocess.Popen(['ping', '-n', '1', '-w', '500', ip],
-                                  stdout=subprocess.PIPE, startupinfo=info).communicate()[0]
+                                  stdout=subprocess.PIPE, startupinfo=info, shell=True).communicate()[0]
         #print("RESULTTTTTTTTTTTTTTTTTT", result)
         if "Destination host unreachable" in result.decode('utf-8'):
             devicesoffline.append(ip)
