@@ -32,7 +32,7 @@ def index():
     for ip in all_hosts[70:75]:
         print(ip)
         ip = str(ip)
-        result = subprocess.call(['ping', '-n', '1', '-w', '500', ip])
+        result = subprocess.Popen(['ping', '-n', '1', '-w', '500', ip])
         print(result)
         if result == 0:
             devicesonline.append(ip)
