@@ -1,1 +1,1 @@
-web: gunicorn hubgui:app
+web: gunicorn app:hubgui
