@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Device Form</title>
+</head>
+<body>
+    <form action="/" method="POST">
+        {{ form.csrf_token }}
+        {{ form.device }}
+        <ul>
+            {% for error in form.device.errors %}
+            <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <input name="form" type="submit" value="Connect to a Device"/>
+    </form>
+</body>
+</html>
+
+####This the original index.html that has the basic design" ##

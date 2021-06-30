@@ -1,0 +1,26 @@
+ {% extends "layout.html" %} 
+{% block content %} 
+<head>
+    <title>Device Form</title>
+</head>
+<body>
+    <form action="results.html" method="Get">
+		<fieldset class ="form-group">
+				<legend class="border-bottom mb-4">Get Started</legend>
+				<p>Choose an availavle RPi device by IP below:</p>
+		</fieldset>
+		{{ form.csrf_token }}
+        {{ form.device }}
+		<ul>
+            {% for error in form.device.errors %}
+            <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+		<div class="form-group">
+				{{ form.submit (class="btn btn-outline-info") }}
+			</div>
+    </form>
+</body>
+</html>
+	
+{% endblock %}

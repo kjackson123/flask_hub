@@ -1,0 +1,17 @@
+{% extends "layout.html" %} 
+{% block content %} 
+	<div class = "content-section"> 
+		<form method="post" action="#">
+			{{ form.hidden_tag() }}
+			<fieldset class ="form-group">
+				<legend class="border-bottom mb-4">Get Started</legend>
+				<p>Choose an availavle RPi device by IP below:</p>
+				<p><input type="text" ipaddress="nm" /></p>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit (class="btn btn-outline-info") }}
+			</div>
+		</form>
+	<div>
+	
+{% endblock %}

@@ -1,0 +1,27 @@
+ {% extends "layout.html" %} 
+{% block content %} 
+<head>
+    <title>Device Form</title>
+	
+</head>
+<body>	
+    <form action="results.html" method="Get">
+		<fieldset class ="form-group">
+				<legend class="border-bottom mb-4">Get Started</legend>
+				<p>Choose an available online RPi device by IP below:</p>
+		</fieldset>
+		{{ devicelist.csrf_token }}
+        {{ devicelist.device }}
+		<p style="font-family:verdana">
+			<SELECT name="ipaddress" style="font-family:helvetica">
+			{% for j in devicelist %}
+			<OPTION value={{j[0]}}>{{j[0]}}  {{j[1]}} </OPTION>
+		{% endfor %}
+		</SELECT>
+		</p>
+		 <input type="submit" value="Connect Now!">
+    </form>
+</body>
+</html>
+	
+{% endblock %}
