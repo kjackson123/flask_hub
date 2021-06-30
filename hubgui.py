@@ -22,7 +22,7 @@ from mysql.connector import Error
 app = Flask(__name__)
 
 
-@app.route("/index", methods=['GET', 'POST'])
+@app.route("/index")
 def index():
     # PINGSCRIPT
     # Configure subprocess to hide the console window
